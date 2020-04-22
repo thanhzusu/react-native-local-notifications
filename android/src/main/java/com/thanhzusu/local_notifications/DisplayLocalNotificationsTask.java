@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -383,7 +383,7 @@ public class DisplayLocalNotificationsTask extends AsyncTask<Void, Void, Void> {
       if (reactContextWeakReference.get() != null) {
         LocalNotificationsUtils.sendEvent(
           reactContextWeakReference.get(),
-          "local_notifications_displayed",
+                LocalNotificationsUtils.LOCAL_NOTIFICATIONS_DISPLAYED_EVENT,
           Arguments.fromBundle(notification)
         );
       }

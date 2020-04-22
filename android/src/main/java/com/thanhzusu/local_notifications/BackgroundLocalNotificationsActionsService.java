@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.content.Intent;
 
@@ -8,8 +8,8 @@ import com.facebook.react.jstasks.HeadlessJsTaskConfig;
 
 import javax.annotation.Nullable;
 
-import static com.accupass.gma.local_notification.BackgroundLocalNotificationsActionReceiver.isBackgroundNotificationIntent;
-import static com.accupass.gma.local_notification.BackgroundLocalNotificationsActionReceiver.toNotificationOpenMap;
+import static com.thanhzusu.local_notifications.BackgroundLocalNotificationsActionReceiver.isBackgroundNotificationIntent;
+import static com.thanhzusu.local_notifications.BackgroundLocalNotificationsActionReceiver.toNotificationOpenMap;
 
 
 public class BackgroundLocalNotificationsActionsService extends HeadlessJsTaskService {
@@ -20,7 +20,7 @@ public class BackgroundLocalNotificationsActionsService extends HeadlessJsTaskSe
       WritableMap notificationOpenMap = toNotificationOpenMap(intent);
 
       return new HeadlessJsTaskConfig(
-        "RNFirebaseBackgroundNotificationAction",
+        "BackgroundLocalNotificationsActionsService",
         notificationOpenMap,
         60000,
         true

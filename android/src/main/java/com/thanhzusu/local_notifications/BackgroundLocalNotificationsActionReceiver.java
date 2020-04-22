@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,6 +12,8 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
+
+import static com.thanhzusu.local_notifications.LocalNotificationsUtils.LOCAL_NOTIFICATIONS_OPENED_EVENT;
 
 public class BackgroundLocalNotificationsActionReceiver extends BroadcastReceiver {
 
@@ -50,7 +52,7 @@ public class BackgroundLocalNotificationsActionReceiver extends BroadcastReceive
         .getReactInstanceManager()
         .getCurrentReactContext();
 
-      LocalNotificationsUtils.sendEvent(reactContext, "local_notifications_opened", notificationOpenMap);
+      LocalNotificationsUtils.sendEvent(reactContext, LOCAL_NOTIFICATIONS_OPENED_EVENT, notificationOpenMap);
     } else {
       Intent serviceIntent = new Intent(
         context,

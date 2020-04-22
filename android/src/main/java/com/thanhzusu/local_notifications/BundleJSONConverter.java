@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 // taken from https://github.com/facebook/facebook-android-sdk/blob/master/facebook/src/main/java/com/facebook/internal/BundleJSONConverter.java
 

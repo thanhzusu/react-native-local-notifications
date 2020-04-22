@@ -1,12 +1,16 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.core.app.RemoteInput;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
@@ -20,13 +24,16 @@ import com.facebook.react.bridge.WritableMap;
 import java.util.ArrayList;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
+import static com.thanhzusu.local_notifications.LocalNotificationsUtils.LOCAL_NOTIFICATIONS_OPENED_EVENT;
+import static com.thanhzusu.local_notifications.LocalNotificationsUtils.LOCAL_NOTIFICATIONS_RECEIVED_EVENT;
+
 
 public class LocalNotificationsModule extends ReactContextBaseJavaModule implements ActivityEventListener {
   private static final String BADGE_FILE = "BadgeCountFile";
   private static final String BADGE_KEY = "BadgeCount";
   private static final String TAG = "NotificationsModule";
 
-  private SharedPreferences sharedPreferences = null;
+  private SharedPreferences sharedPreferences;
 
   private LocalNotificationsManager localNotificationManager;
 
@@ -35,6 +42,14 @@ public class LocalNotificationsModule extends ReactContextBaseJavaModule impleme
     context.addActivityEventListener(this);
     localNotificationManager = new LocalNotificationsManager(context);
     sharedPreferences = context.getSharedPreferences(BADGE_FILE, Context.MODE_PRIVATE);
+
+    LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
+
+    // Subscribe to scheduled notification events
+    localBroadcastManager.registerReceiver(
+            new ScheduledNotificationReceiver(),
+            new IntentFilter(LocalNotificationsManager.SCHEDULED_NOTIFICATION_EVENT)
+    );
   }
 
   @Override
@@ -203,7 +218,7 @@ public class LocalNotificationsModule extends ReactContextBaseJavaModule impleme
     if (notificationOpenMap != null) {
       LocalNotificationsUtils.sendEvent(
         getReactApplicationContext(),
-        "local_notifications_opened",
+              LOCAL_NOTIFICATIONS_OPENED_EVENT,
         notificationOpenMap
       );
     }
@@ -275,5 +290,23 @@ public class LocalNotificationsModule extends ReactContextBaseJavaModule impleme
 
   private WritableMap parseNotificationBundle(Bundle notification) {
     return Arguments.makeNativeMap(notification);
+  }
+
+  private class ScheduledNotificationReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      if (getReactApplicationContext().hasActiveCatalystInstance()) {
+        Log.d(TAG, "Received new scheduled notification");
+
+        Bundle notification = intent.getBundleExtra("notification");
+        WritableMap messageMap = parseNotificationBundle(notification);
+
+        LocalNotificationsUtils.sendEvent(
+                getReactApplicationContext(),
+                LOCAL_NOTIFICATIONS_RECEIVED_EVENT,
+                messageMap
+        );
+      }
+    }
   }
 }

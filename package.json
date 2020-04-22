@@ -1,11 +1,11 @@
 {
-  "name": "@react-native-local-notifications",
-  "version": "1.0.0",
-  "description": "Local notification for react native.",
+  "name": "react-native-local-notifications",
+  "version": "0.0.1",
+  "description": "A local push notification implementation for React Native, supporting iOS & Android.",
   "main": "lib/index.js",
   "author": "thanhzusu@gmail.com",
   "license": "MIT",
-  "private": false,
+  "homepage": "https://github.com/thanhzusu/react-native-local-notifications/blob/master/README.MD",
   "keywords": [
     "react",
     "react-native",
@@ -21,5 +21,9 @@
     "react": "*",
     "react-native": "*",
     "lodash": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanhzusu/react-native-local-notifications.git"
   }
 }

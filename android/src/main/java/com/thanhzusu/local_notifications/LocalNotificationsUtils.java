@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -26,6 +26,9 @@ import javax.annotation.Nullable;
 @SuppressWarnings("WeakerAccess")
 public class LocalNotificationsUtils {
   private static final String TAG = "Utils";
+  static final String LOCAL_NOTIFICATIONS_OPENED_EVENT = "local_notifications_opened";
+  static final String LOCAL_NOTIFICATIONS_DISPLAYED_EVENT = "local_notifications_displayed";
+  static final String LOCAL_NOTIFICATIONS_RECEIVED_EVENT = "local_notifications_received";
 
   public static String timestampToUTC(long timestamp) {
     Calendar calendar = Calendar.getInstance();

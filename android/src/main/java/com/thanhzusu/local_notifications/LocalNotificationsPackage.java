@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

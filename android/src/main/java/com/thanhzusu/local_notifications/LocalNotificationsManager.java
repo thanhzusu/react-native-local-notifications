@@ -1,4 +1,4 @@
-package com.accupass.gma.local_notification;
+package com.thanhzusu.local_notifications;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -29,9 +29,9 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 class LocalNotificationsManager {
-  static final String SCHEDULED_NOTIFICATION_EVENT = "notifications-scheduled-notification";
-  private static final String PREFERENCES_KEY = "RNFNotifications";
-  private static final String TAG = "RNFNotificationManager";
+  static final String SCHEDULED_NOTIFICATION_EVENT = "local-notifications-scheduled-notification";
+  private static final String PREFERENCES_KEY = "LocalNotifications";
+  private static final String TAG = "LocalNotificationsManager";
   private AlarmManager alarmManager;
   private Context context;
   private ReactApplicationContext reactContext;
@@ -374,7 +374,7 @@ class LocalNotificationsManager {
     }
 
     // Scheduled alarms are cleared on restart
-    // We store them so that they can be re-scheduled when the phone restarts in RNFirebaseNotificationsRebootReceiver
+    // We store them so that they can be re-scheduled when the phone restarts in LocalNotificationsRebootReceiver
     try {
       JSONObject json = BundleJSONConverter.convertToJSON(notification);
       preferences

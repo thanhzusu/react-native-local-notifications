@@ -279,7 +279,7 @@ RCT_EXPORT_METHOD(jsInitialised:(RCTPromiseResolveBlock)resolve rejecter:(RCTPro
 // With this temporary instance, we cache any events to be sent as soon as the bridge is set on the module
 - (void)sendJSEvent:(RCTEventEmitter *)emitter name:(NSString *)name body:(id)body {
     if (emitter.bridge && jsReady) {
-        [LocalNotificationUtil sendJSEvent:emitter name:name body:body];
+        [LocalNotificationsUtil sendJSEvent:emitter name:name body:body];
     } else {
         if ([name isEqualToString:LOCAL_NOTIFICATIONS_OPENED] && !initialNotification) {
             initialNotification = body;
