@@ -1,0 +1,1 @@
+It's local notification module for react native.

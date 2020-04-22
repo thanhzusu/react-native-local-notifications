@@ -1,0 +1,25 @@
+{
+  "name": "@react-native-local-notifications",
+  "version": "1.0.0",
+  "description": "Local notification for react native.",
+  "main": "lib/index.js",
+  "author": "thanhzusu@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "react",
+    "react-native",
+    "local-notification",
+    "push-notification"
+  ],
+  "scripts": {
+    "clean": "rm -rf $TMPDIR/react-* && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && rm -rf package-lock.json && rm -rf yarn.lock && npm cache clean -force && yarn",
+    "pod-install": "cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install --repo-update && cd ..",
+    "start": "npx react-native start"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "lodash": "*"
+  }
+}
