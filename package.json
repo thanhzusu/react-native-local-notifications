@@ -1,6 +1,6 @@
 {
   "name": "react-native-local-notifications",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A local push notification implementation for React Native, supporting iOS & Android.",
   "main": "lib/index.js",
   "author": "thanhzusu@gmail.com",
