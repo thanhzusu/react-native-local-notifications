@@ -1,7 +1,7 @@
 require 'json'
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 
-firebase_sdk_version = '~> 8.15.0'
+firebase_sdk_version = '~> 10.7.0'
 
 Pod::Spec.new do |s|
   s.name         = package['name']

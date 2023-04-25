@@ -38,4 +38,5 @@ dependencies {
   implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
   // app badge for notification
   implementation "me.leolin:ShortcutBadger:1.1.22@aar"
+  implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 }
